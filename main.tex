@@ -442,14 +442,34 @@ I think the author considers max weight base quite differently. For a fix matroi
     Prove that the set of max weight bases satisfies the matroid basis axioms.
 \end{nproblem}
 \begin{proof}
-    Denote the weight function by $c$.
+    Denote the weight function by $w$.
 
     non-empty. trivial.
 
-    base exchange. Let $b_1,b_2$ be two different bases with the same(maximal) weight. We need to prove that for any element $e\in b_1\setminus b_2$, there exists $f\in b_2\setminus b_1$ such that $b_1-e+f$ is a base of the same maximal weight. There exists a circuit $C_e\in b_2\cup\{e\}$ since $e\notin b_2$. Consider elements in $C_e\cap b_2$. $c(f)\leq c(e)$ for all $f\in C_e\cap b_2$ since otherwise $b_2$ would not be a max weight base.
+    base exchange. Let $b_1,b_2$ be two different bases with the same(maximal) weight. We need to prove that for any element $e\in b_1\setminus b_2$, there exists $f\in b_2\setminus b_1$ such that $b_1-e+f$ is a base of the same maximal weight. There exists a circuit $C_e\in b_2\cup\{e\}$ since $e\notin b_2$. Consider elements in $C_e\cap b_2$. $w(f)\leq w(e)$ for all $f\in C_e\cap b_2$ since otherwise $b_2$ would not be a max weight base. Notice that for any element $e\in b_1\setminus b_2$ the circuit $C_e$ covers $b_2\setminus b_1$. Thus there exists at least one element $f\in C_e\cap b_2$ with $w(f)=w(e)$ since $w(b_1\setminus b_2)=w(b_2\setminus b_1)$. Thus $b_1-e+f$ is still a base with maximal weight.
 \end{proof}
 
+\begin{proof}[problem 5.5.3]
+    $\underline{\chi}_{Z}$ is the indicator vector of set $Z$. I will write $I_Z$. By theorem 5.5.5, 
+    \[
+        \hat{r}(c+I_Z)=r(S)c(s_n)+\sum_{i=1}^{n-1} r(S_i)\left( c(s_i)-c(s_{i+1})\right)+r(S)I_Z(s_n)+\sum_{i=1}^{n-1} r(S_i)\left( I_Z(s_i)-I_Z(s_{i+1})\right)
+    \]
+    One can see that $I_Z(s_i)$ contributes to the sum by 1 if and only if $r(S_i)=r(S_{i-1})+1$. Thus $\hat{r}(c+I_Z)=\hat r(c)+r_c(Z)$.
 
+\end{proof}
+
+Proofs of problem 5.5.4-5.5.6 are easy
+
+\begin{nproblem}[5.5.7]
+    determine algorithmically if an independent set can be extended to a max weight base.
+\end{nproblem}
+For this problem, consider elements in $S-I$ in decending order of weights. Select the current element if it is independent from the set of previously selected elements and $I$.
+
+actually all different max weight bases can be generated through the greedy algorithm with different tie breaking laws. 
+
+\begin{nproblem}[5.5.8]
+    determine algorithmically if there is a base which is simultaneously maximal with weights $w_1,\dots,w_k$
+\end{nproblem}
 
 
 \section{Chapter 13 - Matroid optimization}
