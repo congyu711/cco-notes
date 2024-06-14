@@ -1,0 +1,532 @@
+% ========================-*- LaTeX -*-=========================
+%
+%   chao.sty -- modified from jeffe.sty
+%   jeffe.sty can be found at http://web.engr.illinois.edu/~jeffe/pubs/latex.html
+%
+% ==========================================================
+
+
+\ProvidesPackage{chao}
+
+
+% remarkable size
+\newif\ifchao@remarkable
+\DeclareOption{remarkable}{\chao@remarkabletrue}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+\ProcessOptions
+
+
+
+
+
+\RequirePackage{latexsym,amsmath}
+\RequirePackage[dvipsnames,usenames]{xcolor}
+
+\RequirePackage[colorlinks=true,urlcolor=Blue,citecolor=Green,linkcolor=BrickRed,unicode]{hyperref}
+
+\RequirePackage[hyperref]{ntheorem}   % theorem numbering
+\RequirePackage{aliascnt}
+\RequirePackage{xspace}
+
+% st mary fonts
+\RequirePackage{stmaryrd}       % comment out if unavailable
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+\RequirePackage{wasysym}
+% nagging
+\RequirePackage[l2tabu, orthodox]{nag}
+\RequirePackage[all,warning]{onlyamsmath}
+
+
+
+\RequirePackage{graphicx} % essentials
+\RequirePackage{microtype}
+\RequirePackage[mathletters]{ucs}       % allow Unicode in .tex file
+\RequirePackage[utf8]{inputenc}
+
+\RequirePackage[charter]{mathdesign}    % change fonts
+\RequirePackage{berasans, beramono}
+\RequirePackage{eucal}
+\RequirePackage[nocompress]{cite}       % other convenient stuff
+\RequirePackage{enumerate}
+%\usepackage{pgf,tikz}
+\RequirePackage{wrapfig}
+\RequirePackage[medium,compact]{titlesec}
+\RequirePackage{verbatim}
+\usepackage{CJKutf8}
+
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newaliascnt{lemma}{theorem}
+\newaliascnt{corollary}{theorem}
+\newaliascnt{conjecture}{theorem}
+\newaliascnt{proposition}{theorem}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{problem}{Problem}
+
+\newcommand{\lemmaautorefname}{Lemma}
+\newcommand{\corollaryautorefname}{Corollary}
+\newcommand{\conjectureautorefname}{Conjecture}
+\newcommand{\propositionautorefname}{Proposition}
+\newcommand{\problemautorefname}{Problem}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivliST}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\widowpenalty 5000
+\clubpenalty 5000
+
+% line numbers (be nice to the referee)
+\RequirePackage[mathlines, pagewise]{lineno}
+%\linenumbers
+\nolinenumbers
+\renewcommand\linenumberfont{\normalfont\tiny\sffamily\color{gray}}
+\setlength\linenumbersep{2em}
+
+\numberwithin{figure}{section}
+
+\ifchao@remarkable
+  \RequirePackage[paperheight=209.6mm, paperwidth=157.2mm, top=0.2in,bottom=0.2in,right=0.2in,left=0.2in]{geometry}
+  \tolerance=10000
+\else
+  \RequirePackage[margin=1in]{geometry}
+\fi
+
+%\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+%\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+%\pagestyle{empty}
+%\newlength{\pagewidth}
+%\setlength{\pagewidth}{6.5in} %\pagestyle{empty}
+\pagenumbering{arabic}
+
+
+
+
+
+\urlstyle{same}     % dammit
+
+\hyphenation{co-or-din-ate co-or-din-ates half-plane half-space stereo-iso-mers stereo-iso-mer Round-table homol-ogous homol-ogy poly-hedron poly-hedra homeo-morphic homeo-morph-ism}
+
+\pdfstringdefDisableCommands{\let\boldmath\relax} % allow \boldmath in section titles
+
+\let\subsectionautorefname\sectionautorefname
+\let\subsubsectionautorefname\sectionautorefname
+
+
+% Chao addition
+\def\email#1{\href{mailto:#1}{#1}}
+% chinese
+\def\zh#1{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
+
+
+
+% ----------------------------------------------------------------------
+%  Common Latin abbreviations, only one of which is actually kosher
+% ----------------------------------------------------------------------
+
+\def\etal{\emph{et~al.}}            % and others
+%\def\ie{\emph{i.e.}}           % that is
+\def\ie{\textcolor{red}{that is}}
+%\def\eg{\emph{e.g.}}           % for example
+\def\eg{\textcolor{red}{for example}}
+
+% -----------------------
+% Common Names
+% -----------------------
+\def\Mobius{M\"obius\xspace}
+
+% -----------------------
+% useful shortcuts
+% -----------------------
+
+\def\cost{\cent}
+
+% ----------------------------------------------------------------------
+%  Simple math stuff
+% ----------------------------------------------------------------------
+\renewcommand{\subset}{\subseteq}
+% ---- SYMBOLS ----
+\let\e\varepsilon               % a ``real'' epsilon — better yet, just use Unicode ε.
+%
+%  I give up.  These are in the wrong font, but my kludged versions 
+%  LOOK like kludges, especially \Z, \Q, and \C.
+%
+\def\Real{\mathbb{R}}
+\def\Proj{\mathbb{P}}
+\def\Hyper{\mathbb{H}}
+\def\Integer{\mathbb{Z}}
+\def\Natural{\mathbb{N}}
+\def\Complex{\mathbb{C}}
+\def\Rational{\mathbb{Q}}
+
+\let\N\Natural
+\let\Q\Rational
+\let\R\Real
+\let\Z\Integer
+\def\Rd{\Real^d}
+\def\RP{\Real\Proj}
+\def\CP{\Complex\Proj}
+
+
+
+% ---- OPERATORS (requires amsmath) ----
+\def\aff{\operatorname{aff}}        
+\def\area{\operatorname{area}}
+\def\argmax{\operatornamewithlimits{arg\,max}}
+\def\argmin{\operatornamewithlimits{arg\,min}}
+\def\Aut{\operatorname{Aut}}        % Automorphism group
+\def\card{\operatorname{card}}  % cardinality, deprecated for \abs
+\def\conv{\operatorname{conv}}  
+\def\E{\operatorname{E}}            % Expectation: $\E[X]$ (like \Pr)
+\def\EE{\operatornamewithlimits{E}}
+\def\Hom{\operatorname{Hom}}        % Homomorphism group
+\def\id{\operatorname{id}}      % identity
+\def\im{\operatorname{im}}      % image
+\def\lcm{\operatorname{lcm}}
+\def\lfs{\operatorname{lfs}}        % local feature size
+\def\poly{\operatorname{poly}}
+\def\polylog{\operatorname{polylog}}
+\def\rank{\operatorname{rank}}
+\def\rel{\operatorname{rel\,}}  % relative (interior, boundary, etc.)
+\def\sgn{\operatorname{sgn}}
+\def\vol{\operatorname{vol}}        % volume
+
+\def\fp#1{^{\underline{#1}}}        % falling powers: $n\fp{d}$
+\def\rp#1{^{\overline{#1}}}     % rising powers:  $n\rp{d}$
+
+\def\setsymdiff{\operatorname{\triangle}}
+% --- Darts and fences ---
+% less nice replacements for stmaryrd characters
+\@ifundefined{shortrightarrow}{\let\shortrightarrow\rightarrow}{}
+\@ifundefined{shortleftarrow}{\let\shortleftarrow\leftarrow}{}
+\@ifundefined{shortuparrow}{\let\shortuparrow\uparrow}{}
+\@ifundefined{shortdownarrow}{\let\shortdownarrow\downarrow}{}
+
+\def\arcto{\mathord\shortrightarrow}
+\def\arcfrom{\mathord\shortleftarrow}
+\def\arc#1#2{#1\arcto#2}
+\def\cra#1#2{#1\mathord\shortleftarrow#2}
+\def\fence#1#2{#1\mathord\shortuparrow#2}
+\def\ecnef#1#2{#1\mathord\shortdownarrow#2}
+
+% --- Cheap displaystyle operators ---
+\def\Frac#1#2{{\displaystyle\frac{#1}{#2}}}
+\def\Sum{\sum\limits}
+\def\Prod{\prod\limits}
+\def\Union{\bigcup\limits}
+\def\Inter{\bigcap\limits}
+\def\Lor{\bigvee\limits}
+\def\Land{\bigwedge\limits}
+\def\Lim{\lim\limits}
+\def\Max{\max\limits}
+\def\Min{\min\limits}
+
+% ---- RELATORS ----
+\def\deq{\stackrel{\scriptscriptstyle\triangle}{=}} % Use := instead.
+\def\into{\DOTSB\hookrightarrow}        % = one-to-one
+\def\onto{\DOTSB\twoheadrightarrow}
+\def\inonto{\DOTSB\lhook\joinrel\twoheadrightarrow}
+\def\from{\leftarrow}
+\def\tofrom{\leftrightarrow}
+\def\mapsfrom{\mathrel{\reflectbox{$\mapsto$}}}
+\def\longmapsfrom{\mathrel{\reflectbox{$\longmapsto$}}}
+
+% ---- DELIMITER PAIRS ----
+% --- always self-scaling delmiter pairs ---
+\def\set#1{\left\{ #1 \right\}}
+\def\floor#1{\left\lfloor #1 \right\rfloor}
+\def\ceil#1{\left\lceil #1 \right\rceil}
+\def\seq#1{\left\langle #1 \right\rangle}
+\def\abs#1{\left| #1 \right|}
+\def\norm#1{\left\| #1 \right\|}
+\def\paren#1{\left( #1 \right)}     % need better macro name!
+\def\brack#1{\left[ #1 \right]}     % need better macro name!
+\def\indic#1{\left[ #1 \right]}     % indicator variable; Iverson notation
+
+%
+%  Macros to typeset sets like {foo|bar} with all three delimiters
+%  correctly scaled to fit.  What I *really* want is a \middle macro
+%  that acts just like \left and \right.  Grumble.
+%
+%  Set version is handled by package braket.
+\def\Bigbar#1{\mathrel{\left|\vphantom{#1}\right.\n@space}}
+\def\Seqbar#1#2{\Seq{#1 \Bigbar{#1 #2} #2}}
+\def\Brackbar#1#2{\Brack{#1 \Bigbar{#1 #2} #2}}
+
+%  Math mode fbox
+\def\mfbox#1{\mathchoice{{\fbox{\ensuremath{\displaystyle #1}}}}
+            {{\fbox{\ensuremath{\textstyle #1}}}}
+            {{\fbox{\ensuremath{\scriptstyle #1}}}}
+            {{\fbox{\ensuremath{\scriptscriptstyle #1}}}}}
+
+% ---- ``ACCENTS'' ----
+%   NB: Commands equivalent to \lrarrowfill and \overlrarrow are
+%       already defined in amstex!
+\def\lrarrowfill{$\m@th\mathord\leftarrow\mkern-6mu%
+  \cleaders\hbox{$\mkern-2mu\mathord-\mkern-2mu$}\hfill
+  \mkern-6mu\mathord\rightarrow$}
+\def\overlrarrow#1{\vbox{\ialign{##\crcr
+      \lrarrowfill\crcr\noalign{\kern-\p@\nointerlineskip}
+      $\hfil\displaystyle{#1}\hfil$\crcr}}}
+
+\def\Line#1{\!\overlrarrow{\vphantom{t}\smash{\,#1\,}}\!}
+\def\Ray#1{\overrightarrow{\vphantom{t}#1\,}\!}
+\def\Seg#1{\overline{\vphantom{t}#1}}
+
+% ---- TEXT STYLES ----
+\def\mathsc#1{\text{\textsc{#1}}}
+\def\mathbs#1{\text{\boldmath\ensuremath{#1}}}
+\def\EMPH#1{\textbf{\emph{\boldmath #1}}}
+
+% ----------------------------------------------------------------------
+%  \begin{bigabstract}...\end{bigabstract}
+%  For use in documents with title pages.  Use normal-sized text in
+%  the abstract!
+% ----------------------------------------------------------------------
+\newenvironment{bigabstract}%
+{\begin{center}\large\textbf{\abstractname}\end{center}\begin{quotation}}%
+{\end{quotation}}
+
+% ----------------------------------------------------------------------
+%  Make captions smaller than the text, make their titles bold.
+%  Arguments:   #1 == figure name: "Figure 5"
+%               #2 == caption: "Papers by \Erdos, 1900--2000 (projected)"
+%  Less space after floats and before caption, since captions are smaller
+% ----------------------------------------------------------------------
+\@ifundefined{abovecaptionskip}{\newlength\abovecaptionskip}
+\long\def\@makecaption#1#2{
+   \vskip \abovecaptionskip
+   \setbox\@tempboxa\hbox{{\sffamily\footnotesize \textbf{#1.} #2}}
+   \ifdim \wd\@tempboxa >\hsize                     % if more than one line,
+       {\sffamily\footnotesize \textbf{#1.} #2\par}     %     typeset normally
+     \else                                          % else
+       \hbox to\hsize{\hfil\box\@tempboxa\hfil} %     center
+   \fi}
+\dbltextfloatsep 18pt plus 2pt minus 4pt    % was 20pt plus 2pt minus 4pt
+\textfloatsep 18pt plus 2pt minus 4pt       % was 20pt plus 2pt minus 4pt
+\abovecaptionskip 6pt                   % was 10pt
+
+% ----------------------------------------------------------------------
+%  Revised theorem environment:
+%  Add a period after the theorem number, and make theorems slanted
+%  instead of italic to help distinguish text from math.  Use
+%  \boldmath in theorem label in case it includes math.
+% ----------------------------------------------------------------------
+\def\@opargbegintheorem#1#2#3{\trivlist
+    \item[\hskip\labelsep{\bfseries\boldmath #1\ #2\ (#3).}]\slshape}
+\def\@begintheorem#1#2{\trivlist
+    \item[\hskip\labelsep{\bfseries\boldmath #1\ #2.}]\slshape}
+
+% ----------------------------------------------------------------------
+%  \newproof{type}{text}(style)[post]:
+%  Define a new type of unnumbered ``theorem'' environment.  The last
+%  two arguments are optional; most environments will not use them.
+%
+%  To change label style, put new style command in label:
+%       \newproof{comment}{\textsf{Comment}}
+% ----------------------------------------------------------------------
+\def\newproof#1#2{\@ifnextchar({\@snproof{#1}{#2}}{\@snproof{#1}{#2}()}}
+\def\@snproof#1#2(#3){\@ifnextchar[{\@xnproof{#1}{#2}{#3}}
+                                   {\@xnproof{#1}{#2}{#3}[]}}
+
+\def\@xnproof#1#2#3[#4]{%\expandafter\@ifdefinable\csname #1\endcsname
+{\global\@namedef{#1}{\@prf{#2}{#3}}\global\@namedef{end#1}{\@endprf{#4}}}}
+
+\def\@prf#1#2{\@ifnextchar[{\@xprf{#1}{#2}}{\@yprf{#1}{#2}}}
+\def\@xprf#1#2[#3]{\@yprf{#1\ (#3)}{#2}}
+\def\@yprf#1#2{\begin{trivlist}\item[\hskip\labelsep{\bfseries\boldmath #1:}]#2}
+
+\def\@endprf#1{#1\end{trivlist}}
+
+%
+%  Standard proof envrionment: last line has a halmos at the right margin.
+%  Insert \qed to override default halmos placement.
+%  Incompatible with amsprf package!
+%
+\newif\ifneedqed
+\global\needqedfalse
+\@ifundefined{square}{\let\square\Box}{}    % grumble latex2e 
+\def\QED{\ensuremath{{\square}}}
+\def\markatright#1{\leavevmode\unskip\nobreak\quad\hspace*{\fill}{#1}}
+\def\qed{\ifneedqed\markatright{\QED}\global\needqedfalse\else\null\fi}
+\newproof{proof}{Proof\global\needqedtrue}[\qed]
+\newproof{sketch}{Proof Sketch\global\needqedtrue}[\qed]
+
+%
+%  'Fake' proof environment, for use with wrapfig and similar packages
+%
+\newenvironment{rawproof}%
+   {\begin{trivlist}\item[\hskip\labelsep\textbf{Proof:}\global\needqedtrue]}%
+   {\qed\end{trivlist}}
+
+%
+%  If the proof ends with a displayed equation, use \aftermath just
+%  before \end{proof} to put the halmos in the ``right'' place.  
+%  Doesn't work worth a damn. 
+%
+\def\aftermath{\par\vspace{-\belowdisplayskip}\vspace{-\parskip}\vspace{-\baselineskip}}
+
+% ----------------------------------------------------------------------
+%  One-shot theoremish environment.  For named things like ``Zorn's
+%  Lemma'' or ``The Death Leap Principle'' or ``The Zone Theorem''.
+%  To get one-shot proofish environment, put \normalfont inside.
+%  New improved version stolen from Erik Demaine.
+% ----------------------------------------------------------------------
+\newenvironment{oneshot}[1]{\@begintheorem{#1}{\unskip}}{\@endtheorem}
+
+% Meh.
+\def\Comment#1{\textsf{\textsl{$\langle\!\langle$#1\/$\rangle\!\rangle$}}}
+
+\def\beginc@de{\noindent\begin{center}\begin{minipage}{1in}\tt
+        \begin{tabbing}~~~~\=~~~~\=~~~~\=~~~~\=~~~~\=~~~~\=~~~~\=\kill}
+\def\endc@de{\end{tabbing}\end{minipage}\end{center}}
+
+\newenvironment{code}{\beginc@de}{\endc@de}
+
+%
+%  These only work with <1 line of text.  Use sparingly!!
+%
+\def\textul#1{\underline{\smash{#1}\vphantom{.}}}
+\def\strike#1{\ensuremath{\overline{\text{\smash{#1}\vphantom{.}}}}}
+
+% ----------------------------------------------------------------------
+%  Include a file verbatim.  Searches the TEXINPUTS path for the file,
+%  even though that's probably not what you really want.  Stolen from
+%  ``verbatimfiles.sty'' by Chris Rowley and others.  [Don't use their 
+%  \vertbatimlisting macro; it has some bizarre side-effects!]
+% ----------------------------------------------------------------------
+\def\verbinput#1{
+\begingroup\@verbatim\frenchspacing\@vobeyspaces\input#1\endgroup
+}
+
+% ----------------------------------------------------------------------
+%  \now  -- Current time in h:mm AM/PM format
+%  \mdyy -- Today's date in m/d/yy format.  Forget Y2K; this is for humans!
+% ----------------------------------------------------------------------
+\newcount\timehh\timehh=\time
+\divide\timehh by 60
+\newcount\timemm\timemm=\time
+\count255=\timehh
+\multiply\count255 by -60
+\advance\timemm by \count255
+\newif\iftimePM
+\ifnum\timehh>11 \timePMtrue\else\timePMfalse\fi
+\ifnum\timehh<1 \advance\timehh by 12\fi
+\ifnum\timehh>12 \advance\timehh by -12\fi
+\def\now{\number\timehh:\ifnum\timemm<10 0\fi\number\timemm
+         \iftimePM pm\else am\fi}
+\newcount\mdYY\mdYY=\year
+\count255=\year
+\divide\count255 by 100
+\multiply\count255 by 100
+\advance\mdYY by -\count255
+\def\mdyy{\number\month/\number\day/\ifnum\mdYY<10 0\fi\number\mdYY}
+
+
+% ----------------------------------------------------------------------
+%  Notes to myself.  The margin flags are broken, thanks to an
+%  incompatibility with the geometry package.
+% ----------------------------------------------------------------------
+\def\n@te#1{\textsf{\boldmath \textbf{$\langle\!\langle$#1$\rangle\!\rangle$}}\leavevmode}
+\def\n@tew@rn{\GenericWarning{}{AUTHOR WARNING: Unresolved \protect\note}}
+
+\def\n@ten@te#1{\marginpar
+    [\hfill\llap{\textcolor{red}{{#1}$\!\Longrightarrow$}}]
+    {\rlap{\textcolor{red}{$\Longleftarrow\!${#1}}}}}
+
+% Warning: The textcomp and mathdesign packages are incompatible!
+%\def\n@tedingb@t{\@ifundefined{textmusicalnote}
+%           {$\maltese$}            % if you don't have textcomp
+%           {\textmusicalnote}}     % if you do have textcomp
+
+\def\n@tedingb@t{\textcircled{$\maltese$}}
+
+\def\note#1{\textcolor{red}{\n@tew@rn\n@te{\n@ten@te{\n@tedingb@t}#1}}}
+
+\def\sidenote#1{\marginpar{\tiny\textsf{#1}}}
+
+\setlength{\marginparsep}{0.1in}
+\setlength{\marginparwidth}{\paperwidth}
+\addtolength{\marginparwidth}{-\oddsidemargin}
+\addtolength{\marginparwidth}{-\textwidth}
+\addtolength{\marginparwidth}{-1.0\marginparsep} 
+\addtolength{\marginparwidth}{-1.0in}
+
+%----------------------------------------------------------------------
+%  TODO sets enclosed text in a gray rectangle with a red border
+%  with small sans-serif text.
+%----------------------------------------------------------------------
+\definecolor{TODOcolor}{cmyk}{0.05,0,0,0}
+\definecolor{TODOtxtcolor}{cmyk}{0,1,1,0}
+
+\newenvironment{TODO}
+   {\fboxrule1.5pt\begin{lrbox}{\@tempboxa}
+    \begin{minipage}{0.9\columnwidth}\small\sffamily\color{TODOtxtcolor}}
+   {\end{minipage}
+    \end{lrbox}
+    \medskip\centerline{\fcolorbox{TODOtxtcolor}{TODOcolor}{\usebox{\@tempboxa}}}
+    \sidenote{\LARGE\color{Red}$\bigstar\bigstar\bigstar$}\medskip}
+
+
+%----------------------------------------------------------------------
+%  Bibliography aliases, so I can use mnemonic citation keys and
+%  geom.bib at the same time.  \bibalias{foo}{bar} makes \cite{foo}
+%  act (almost) exactly like \cite{bar}.  I don’t actually use this.
+%----------------------------------------------------------------------
+\def\bibalias#1#2{%
+    \global\@namedef{b@#1}{%
+        {\@ifundefined{b@#2}{\textsf{?}}{}\csname b@#2\endcsname}}}
+
+% ----------------------------------------------------------------------
+%  Draft notice.  Put \DRAFT on the title page, in place of \date.
+% ----------------------------------------------------------------------
+\def\draftnotice{Preliminary draft --- \mdyy\ --- Not for distribution}
+
+\def\DRAFT{
+\date{\fbox{\textsf{\textbf{\draftnotice}}}}
+\def\@oddfoot{\footnotesize\hss\fbox{\textbf{\textsf{\draftnotice}}}\hss}
+\let\@evenfoot\@oddfoot
+}
+
+
+%----------------------------------------------------------------------
+% 'cramped' list style, stolen from Jeff Vitter.  Doesn't always work.
+%----------------------------------------------------------------------
+\def\cramped
+  {\parskip\@outerparskip\@topsep\parskip\@topsepadd2pt\itemsep0pt
+}
+
+%----------------------------------------------------------------------
+%  More footnote symbols, please.
+%----------------------------------------------------------------------
+\def\@fnsymbol#1{\ensuremath{\ifcase#1\or *\or \dagger\or \ddagger\or
+   \mathsection\or \mathparagraph\or \|\or **\or \dagger\dagger
+   \or \ddagger\ddagger \or \mathsection\mathsection \or
+   \mathparagraph\mathparagraph \else\@ctrerr\fi}}
+
+%----------------------------------------------------------------------
+%  TeXbook style quotations -- I should really use the right font, tho.
+%----------------------------------------------------------------------
+\newenvironment{rightquote}[1]
+{\flushright\begin{minipage}{#1\textwidth}
+\parskip0pt\footnotesize\sffamily\slshape}
+{\end{minipage}\par\bigskip}
+\def\quotee#1{\par\vspace{0.5ex}\begin{flushright}\unskip\textup{--- #1}\end{flushright}\unskip}
+
+%----------------------------------------------------------------------
+%  Creative Commons license
+%----------------------------------------------------------------------
+\def\CCLicense#1{\vfill\vbox to 0pt{\centering\tiny\sffamily \textcopyright\ Copyright \number\year\ Chao Xu.\\ This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (\url{http://creativecommons.org/licenses/by-nc-sa/4.0/}).\\  Free distribution is strongly encouraged; commercial distribution is expressly forbidden.\quad  See {#1} for the most recent revision.\vss}}
+
+
