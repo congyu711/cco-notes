@@ -122,8 +122,10 @@ For $n=2$ and $|D|=1$ this is weak circuit axiom.
 Similar methods can be used to prove edges in $(k,\ell)$-sparse subgraphs form the independent set of matroid.
 
 \begin{proof}[$(k,\ell)$-sparsity matroid]
-We prove the set of edges of $(k,\ell)$-sparse subgraphs in $G=(V,E)$ for all $k\geq 1, \ell \leq 2k-1$ satisfy axioms of independent sets of matroid. Again $\emptyset \in \mathcal I$ and the hereditary property hold trivially. For simplicity we will mix the symbols for graphs and their edge sets. We need to prove that for two \klsparse subgraph $I$ and $J$ on $G$ such that $|I\setminus|=1$ and $|J\setminus I|=2$, $\exists e\in J\setminus I$, $I+e$ is \klsparse. Suppose This weak exchange property does not hold. Let $\{y=(u,v)\}=\I\setminus J$. Then $J+y$ can not be \klsparse since if it is then $I\cup J$ will be independent in the sparsity matroid on $G$. Since $J+y$ is not \klsparse, we can find tight subgraphs $G_1=(V_1,E_1),G_2=(V_2,E_2),\ldots$ of $J$ containing two endpoints of $y$. Let $V'=\cup V_i$. By theorem 5(1) in \cite{lee_pebble_2008}, $V'$ induces a tight subgraph $H$ in $J$. Note that $E[H]\not \subseteq I$. Now we need to show $I-x+z$ is \klsparse for $x\in E[H]\cap J,z\in J\setminus I-x$. $H$ is the minimal subgraph of $J$ s.t. adding $y$ breaks the sparsity since any other subgraph would have been one of $G_i$ and $V'$ is contained in it. Thus $I\cup J-x$ is \klsparse. $I, J$ is not a counterexample.
+We prove the set of edges of $(k,\ell)$-sparse subgraphs in $G=(V,E)$ for all $k\geq 1, \ell \leq 2k-1$ satisfy axioms of independent sets of matroid. Again $\emptyset \in \mathcal I$ and the hereditary property hold trivially. For simplicity we will mix the symbols for graphs and their edge sets. We need to prove that for two \klsparse{} subgraph $I$ and $J$ on $G$ such that $|I\setminus|=1$ and $|J\setminus I|=2$, $\exists e\in J\setminus I$, $I+e$ is \klsparse{}. Suppose This weak exchange property does not hold. Let $\{y=(u,v)\}=\I\setminus J$. Then $J+y$ can not be \klsparse{} since if it is then $I\cup J$ will be independent in the sparsity matroid on $G$. Since $J+y$ is not \klsparse{}, we can find tight subgraphs $G_1=(V_1,E_1),G_2=(V_2,E_2),\ldots$ of $J$ containing two endpoints of $y$. Let $V'=\cup V_i$. By theorem 5(1) in \cite{lee_pebble_2008}, $V'$ induces a tight subgraph $H$ in $J$. Note that $E[H]\not \subseteq I$. Now we need to show $I-x+z$ is \klsparse{} for $x\in E[H]\cap J,z\in J\setminus I-x$. $H$ is the minimal subgraph of $J$ s.t. adding $y$ breaks the sparsity since any other subgraph would have been one of $G_i$ and $V'$ is contained in it. Thus $I\cup J-x$ is \klsparse{}. $I, J$ is not a counterexample.
 \end{proof}
+
+note that there is a circuit proof in the appendix of \cite{Whiteley_matroids_1996}.
 
 \begin{proof}[Exercise 5.2.1]
     Note that minimal cuts are actually cocircuits of circuit matroids.
@@ -468,7 +470,7 @@ For this problem, consider elements in $S-I$ in decending order of weights. Sele
 actually all different max weight bases can be generated through the greedy algorithm with different tie breaking laws. 
 
 \begin{nproblem}[5.5.8]
-    determine algorithmically if there is a base which is simultaneously maximal with weights $w_1,\dots,w_k$
+    determine algorithmically if there is a base which is simultaneously maximal with weights $w_1,\dots,w_k$.
 \end{nproblem}
 
 
