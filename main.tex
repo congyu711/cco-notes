@@ -472,7 +472,16 @@ actually all different max weight bases can be generated through the greedy algo
 \begin{nproblem}[5.5.8]
     determine algorithmically if there is a base which is simultaneously maximal with weights $w_1,\dots,w_k$.
 \end{nproblem}
+\begin{proof}
+    \note{\zh{不会...}}
+\end{proof}
 
+\begin{proof}[problem 5.5.9]
+    We prove this by induction on $k$. $k=1$ is trivial. Suppose the statement is true for all $k\leq p$. Consider the $k=p+1$ case. Notice that $B'=B-x_{p+1}+y_{p+1}$ is a base with the same weight as $B$. We claim that the conditions in the statement still holds for $B'$.
+    (That is, $y_1,\dots,y_{p}$ and $x_1,\dots,x_{p}$ satisfy that $c(x_i)=c(y_i)$ and $x_i\in C(y_i,B')$. Furthermore, $h>j$ and $c(x_h)=c(y_j)$ imply that $x_h \notin C(y_j,B')$.)
+    Now consider the circuits $C(y_i,B)$ for $i\in [p]$, if $C(y_i,B)$ doesn't contain $x_{p+1}$, the conditions obviously holds. Now suppose that $C(y_i,B)$ contains $x_{p+1}$, we know that there exists a circuit $C$ such that  $y_i\in C\subseteq C(y_1,B)\cup C(y_i,B)\setminus \{x_{p+1}\}$. $C$ also contains $y_{p+1}$ since otherwise $C(y_i,B)$ is not unique. Note that $c(y_i)>c(y_{p+1})$ since $h>j$ and $c(x_h)=c(y_j)$ imply that $x_h \notin C(y_j,B')$ and we have already assumed $x_{p+1}\in C(y_i,B)$.
+    We can see that $B'$ is not a max weight base since we can swap $y_{p+1}$ and $y_i$ to increase the weight. Thus $x_{p+1}\notin C(y_i,B')$. All conditions holds for $B'$.
+\end{proof}
 
 \section{Chapter 13 - Matroid optimization}
 \subsection{count matroids}
