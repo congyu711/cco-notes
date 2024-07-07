@@ -472,10 +472,14 @@ Actually all different max weight bases can be generated through the greedy algo
 \begin{nproblem}[5.5.8]
     determine algorithmically if there is a base which is simultaneously maximal with weights $w_1,\dots,w_k$.
 \end{nproblem}
-Sort elements lexicographically based on the vector $(w_1(e),\dots,w_k(e))$ and use the greedy algorithm to find a max weight base $B^*$. Then check whether $B^*$ is the simultaneously maximal with weights $w_1,\dots,w_k$.
+Sort elements lexicographically based on the vector $w(e)=(w_1(e),\dots,w_k(e))$ and use the greedy algorithm to find a max weight base $B^*$. Then check whether $B^*$ is the simultaneously maximal with weights $w_1,\dots,w_k$.
 \begin{proof}
-    We need to prove that if there exists a simultaneously maximal base, the algorithm can find it.
-    $k=1$ case is trivial. Suppose the algorithm finds the simultaneously max base for $k$ weights. Assume that the algorithm generates $B$. Let $B^*$ be the simultaneously max base for which its intersection with $B$ is as large as possible. By the induction hypothesis, $B$ is a simultaneously max base for weights $w_1,\dots,w_{k}$. Let $f$ be the element with the largest weight $B-B^*$. \dots
+    We need to prove that if there exists a common max base for weights $w_1,\dots,w_k$, then the lexicographically max base is simultaneously maximal with weights $w_1,\dots,w_k$. 
+    Let $B$ be the base computed by the lexicographically sorted greedy algorithm.
+    Suppose $B$ is not a common max base for weights $w_1,\dots,w_{k}$. Then we can find a common max base $B'$ which has intersection with $B$ as large as possible. Let $f$ be the (lexicographically) largest element in $B\setminus B'$. By the matroid base exchange property there exists $e\in B'\setminus B$ such that $B-f+e$ and $B'+f-e$ are bases.
+
+    If $e$ is lexicographically smaller than $f$(denoted by $e\prec f$), then $B'-e+f$ will be a larger base than $B'$ for some weight. If $e\succ f$, then the greedy algorithm will add $e$ to the base before $f$ and such $B$ can not exist. If $e=f$, then $B'+f-e$ is a common max base and has larger intersection with $B$. Thus such $B'=B$. The greedy algorithm finds the common max base if one exists.
+    \scriptsize{when dealing with the greedy base algorithm, proofs always look like this.}
 \end{proof}
 
 \begin{proof}[problem 5.5.9]
