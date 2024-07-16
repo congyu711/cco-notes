@@ -491,6 +491,51 @@ Sort elements lexicographically based on the vector $w(e)=(w_1(e),\dots,w_k(e))$
 
 \subsection{polyhedron}
 
+Consider the following LPs,
+
+\begin{minipage}{.45\textwidth}
+\begin{align*}
+    \text{LP1: } \max  cx\\
+    s.t. \quad x(Z)&\leq r(Z) &\forall Z \subsetneq S\\
+                x(S)&=r(S) \\
+                x&\geq 0
+\end{align*}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\begin{align*}
+    \text{Dual1: } \min \sum_{Z\subseteq S} y_Z r(Z)\\
+    s.t. \quad \sum_{s\in Z}y_Z&\geq c(s) & \forall s\in S\\
+    y_Z&\geq 0 & \forall Z\subsetneq S
+\end{align*}
+\end{minipage}
+
+\begin{minipage}{.45\textwidth}
+\begin{align*}
+    \text{LP2: } \max  cx\\
+    s.t. \quad x(Z)&\leq r(Z) &\forall Z \subseteq S\\
+                x&\geq 0
+\end{align*}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+    \begin{align*}
+        \text{Dual2: } \min \sum_{Z\subseteq S} y_Z r(Z)\\
+        s.t. \quad \sum_{s\in Z}y_Z&\geq c(s) & \forall s\in S\\
+        y_Z&\geq 0 & \forall Z\subseteq S
+    \end{align*}
+\end{minipage}
+
+LP1 and LP2 are both total dual integral.
+
+Define the independence polytope $P(M)=\conv\{\underline{\chi}_I, \forall I\subseteq \mathcal I(M)\}$ and the base polytope $B(M)=\conv\{\underline{\chi}_B, \forall B\subseteq \mathcal B(M)\}$.
+
+\begin{theorem}[5.5.8]
+    Let $B'$ and $P'$ be the polyhedrons described in LP1 and LP2 respectively. Then $B'=B(M)$ and $P'=P(M)$.
+\end{theorem}
+\begin{proof}
+    Clearly $B(M)\subseteq B'$ and $P(M)\subseteq P'$. Now we show that $B'\subseteq B(M)$ and $P'\subseteq P(M)$. We know that LP1 and LP2 are TDI and all numbers in the LPs are integer. Thus all extreme points of $B'$ and $P'$ are integer. By definition one can see that the extreme points of $B'$ and $P'$ are exactly the indicator vectors of bases and independent sets since otherwise they won't satisfy the rank function inequalities. Thus $B'\subseteq B(M)$ and $P'\subseteq P(M)$.
+\end{proof}
+
+
 \section{Chapter 13 - Matroid optimization}
 \subsection{count matroids}
 
