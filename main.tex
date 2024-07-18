@@ -535,7 +535,32 @@ Define the independence polytope $P(M)=\conv\{\underline{\chi}_I, \forall I\subs
     Clearly $B(M)\subseteq B'$ and $P(M)\subseteq P'$. Now we show that $B'\subseteq B(M)$ and $P'\subseteq P(M)$. We know that LP1 and LP2 are TDI and all numbers in the LPs are integer. Thus all extreme points of $B'$ and $P'$ are integer. By definition one can see that the extreme points of $B'$ and $P'$ are exactly the indicator vectors of bases and independent sets since otherwise they won't satisfy the rank function inequalities. Thus $B'\subseteq B(M)$ and $P'\subseteq P(M)$.
 \end{proof}
 
+A set function $f$ is a polymatroid function if $f(\emptyset)=0$, $f$ is non-decreasing and $f$ is submodular. If $f$ is also subcardinal, then $f$ will be a matroid rank function.
 
+\begin{proof}[problem 5.5.10]
+    $\gamma(X)=|\Gamma_G(X)|$ for $X\subseteq S$ is a polymatroid function.(The number of vertices in $T$ which connected with $X$.) $\gamma(\emptyset)=0$ and non-decreasing properties are easy to verify. $\gamma(X)$ is submodular since $\gamma(X)+\gamma(Y)=|\Gamma_G(X)|+|\Gamma_G(Y)|=|\Gamma_G(X)\cup \Gamma_G(Y)|+|\Gamma_G(X)\cap\Gamma_G(Y)|\geq |\Gamma_G(X\cup Y)|+|\Gamma_G(X\cap Y)|$.
+
+    An integral vector $m\in \Z_+^S$ belongs to the polymatroid set determined by $\gamma$ iff $\exists F\subseteq E$ s.t. $d_F(t)\leq 1$ for every $t\in T$ and $d_F(s)=m(s)$ for every $s\in S$. 
+    The only if part. $m\in \Z_+^S$ is an integral vector such that $\widetilde{m}(X)\leq |\Gamma_G(X)|$ for all $X\subseteq S$. We claim that it is always possible to select $F\subseteq E$ as the edges achieving $\Gamma_F(s)=m(s)$ and keeping $d_F(t)\leq 1$ for every $t\in T,s\in S$. Suppose that $\Gamma_F(s)=m(s)$ for every $s\in S$ but $d_F(t)> 1$ for some $t\in T$. There will be $s_1,s_2$ such that there exists edges $(s_1,t),(s_2,t)\in F$. We also have $m(s_i)=d_F(s_i)=|\Gamma_G(s_i)|$ since otherwise we can simply swap one of the edges$(s_i,t)$ with $(s_i,z)\notin F$. However in this case $m(\{s_1,s_2\})>|\Gamma_G(\{s_1,s_2\})|$. Thus we can always find the desired $F\subseteq E$.
+    The if part is easy. $m(X)\leq |\Gamma_G(X)|$ since $d_F(t)\leq 1$ for all $t\in T$.
+\end{proof}
+
+\begin{proof}[exercise 5.5.11]
+    One can easily see that $e_H(\emptyset)=0$ and $e_H(X)$ is non-decreasing.
+$e_H(X)+e_H(Y)=e_H(X\cup Y)+e_H(X\cap Y)+\text{\# hyperedges intersecting both $X\setminus Y$ and $Y\setminus X$} \geq e_H(X\cup Y)+e_H(X\cap Y)$.
+\end{proof}
+
+\begin{theorem}[Orientation lemma, theorem 2.3.2 in the book]\label{lem:orient}
+    For undirected graph $G=(V,E)$, and a function $m:V\to \Z$ satisfying $\widetilde{m}(V)=|E|$, the followings are equivalent. Let $\rho(v)$ be the in-degree of $v\in V$, $i_G(X)$ be the number of edges induced by $X$ in $G$ and $e_G(X)$ be the number of edges with at least one end-point in $X$.
+    \begin{enumerate}
+        \item $G$ has an orientation so that $\rho(v)=m(v)$ for every node $v$,
+        \item $e_G(X)\geq \widetilde{m}(X)$ for every subset $X\subseteq V$,
+        \item $i_G(Y)\leq \widetilde{m}(Y)$ for every subset $Y\subseteq V$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}[problem 5.5.12]
+    By \autoref{lem:orient} we have $m\leq e_G$. $\widetilde{m}(V)=e_G(V)$ since the sum of in-degree is exactly the number of edges. Thus $Z_{in}$ is the set of integral elements of the base-polyhedron.
+\end{proof}
 \section{Chapter 13 - Matroid optimization}
 \subsection{count matroids}
 
