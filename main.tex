@@ -4,6 +4,26 @@
 \usepackage{chao}
 \usepackage{url}
 
+\usepackage[breakable, theorems, skins]{tcolorbox}
+\tcbset{enhanced}
+\DeclareRobustCommand{\mybox}[2][gray!20]{%
+\begin{tcolorbox}[   %% Adjust the following parameters at will.
+        breakable,
+        left=0pt,
+        right=0pt,
+        top=0pt,
+        bottom=0pt,
+        colback=#1,
+        colframe=#1,
+        width=\dimexpr\textwidth\relax, 
+        enlarge left by=0mm,
+        boxsep=5pt,
+        arc=0pt,outer arc=0pt,
+        ]
+        #2
+\end{tcolorbox}
+}
+
 % problem without label
 \newtheorem*{nproblem}{Problem}
 
@@ -550,17 +570,45 @@ A set function $f$ is a polymatroid function if $f(\emptyset)=0$, $f$ is non-dec
 $e_H(X)+e_H(Y)=e_H(X\cup Y)+e_H(X\cap Y)+\text{\# hyperedges intersecting both $X\setminus Y$ and $Y\setminus X$} \geq e_H(X\cup Y)+e_H(X\cap Y)$.
 \end{proof}
 
-\begin{theorem}[Orientation lemma, theorem 2.3.2 in the book]\label{lem:orient}
+\mybox[green!20]{
+    \begin{theorem}[Orientation lemma, theorem 2.3.2 in the book]\label{lem:orient}
     For undirected graph $G=(V,E)$, and a function $m:V\to \Z$ satisfying $\widetilde{m}(V)=|E|$, the followings are equivalent. Let $\rho(v)$ be the in-degree of $v\in V$, $i_G(X)$ be the number of edges induced by $X$ in $G$ and $e_G(X)$ be the number of edges with at least one end-point in $X$.
     \begin{enumerate}
         \item $G$ has an orientation so that $\rho(v)=m(v)$ for every node $v$,
         \item $e_G(X)\geq \widetilde{m}(X)$ for every subset $X\subseteq V$,
         \item $i_G(Y)\leq \widetilde{m}(Y)$ for every subset $Y\subseteq V$.
     \end{enumerate}
-\end{theorem}
+    \end{theorem}
+}
 \begin{proof}[problem 5.5.12]
     By \autoref{lem:orient} we have $m\leq e_G$. $\widetilde{m}(V)=e_G(V)$ since the sum of in-degree is exactly the number of edges. Thus $Z_{in}$ is the set of integral elements of the base-polyhedron.
 \end{proof}
+\paragraph{Polymatroid greedy algorithm} Consider the following LPs,
+
+\begin{minipage}{.45\textwidth}
+\begin{align*}
+    \text{LP3: } \max  cx\\
+    s.t. \quad x(Z)&\leq f(Z) &\forall Z \subseteq S\\
+                x&\geq 0
+\end{align*}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+    \begin{align*}
+        \text{Dual3: } \min \sum_{Z\subseteq S} y_Z f(Z)\\
+        s.t. \quad \sum_{s\in Z}y_Z&\geq c(s) & \forall s\in S\\
+        y_Z&\geq 0 & \forall Z\subseteq S
+    \end{align*}
+\end{minipage}
+
+This looks almost the same as LP2 and Dual2, but here $f$ is a polymatroid function instead of a matroid rank function. Why does the greedy algorithm works on matroids?
+
+\begin{enumerate}
+    \item We can discard all elements with negative weights. If any set $Z\subseteq S$ satisfies $x(Z)\leq r(Z)$, so does any subset of $Z$. This also works if $r$ is a polymatroid function.
+    \item Suppose no further information than 1. is provided, what we can do is enumerating all subsets and finding the one with the largest weight. So why does greedy alg work? I think it is because the independent set exchange property. In LP2 $x(s)$ is automatically in $[0,1]$. Thus $x$ is naturally the indicator vector of subsets of $S$. For two independent sets $A,B$ with $|A|=|B|$, if there exists an element $a\in A\setminus B$ such that $c(a)$ is larger than the weight of any element in $B\setminus A$, we can always apply the independent set exchange property to make $c(B)$ larger. Thus it is always valid to select the largest element(if it doesn't break independence).
+\end{enumerate}
+
+However 2. for polymatroid functions (see LP3) is more complicated. In LP3 $x$ is no longer indicator vector of subsets of $S$ since $f$ is not subcardinal. Now it is reasonable to write $x_{alg}$ as (5.27) and to proof lemma 5.5.10 and theorem 5.5.11.
+
 \section{Chapter 13 - Matroid optimization}
 \subsection{count matroids}
 
