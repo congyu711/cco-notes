@@ -136,7 +136,7 @@ For $n=2$ and $|D|=1$ this is weak circuit axiom.
         {\scriptsize{A few words on matroid proof techniques. Initially i want to show that any $C_e$ always contains a unique element in $I_2\setminus I_1$, other circuits can not contain it. Thus I can show the contradiction that $I_2\setminus I_1$ is not smaller than $I_1\setminus I_2$. However this is not true. Just consider uniform matroids. Every $C_e$ contains $I_2\setminus I_1$. So it is always useful to consider if your techniques work on special matroids. At least try uniform and circuit matroid first.}}
         
         There is a proof in \cite{schrijver_combinatorial_2003}. If weaker results are usable, just prove the weaker one. Instead of proving I3' we prove that for two independent set $I$ and $J$ such that $|I\setminus J|=1$ and $|J\setminus I| =2$, $\exists e\in J\setminus I$, $I+e$ is independent.
-        Suppose we find $I$ and $J$ contains no circuits and volating this weak exchange property. Suppose $\{y\}=I\setminus J$. If $y+J$ contains no circuit, then $I\cup J$ contains no circuits. $I$ and $J$ are not violating weak exchange property. Consider then case $J+y$ contains a circuit $C$. $C\cap J\setminus I\not= \emptyset$ since otherwise $I$ will contain a circuit. Let $x$ be an element in $C\cap J\setminus I$. Note that $C$ is the unique circuit in $J\cup I$, so $J\cup I-x$ should be independent. Then for the other element $z\in J\setminus I$, $I+z$ contains no circuit.
+        Suppose we find $I$ and $J$ contains no circuits and violating this weak exchange property. Suppose $\{y\}=I\setminus J$. If $y+J$ contains no circuit, then $I\cup J$ contains no circuits. $I$ and $J$ are not violating weak exchange property. Consider then case $J+y$ contains a circuit $C$. $C\cap J\setminus I\not= \emptyset$ since otherwise $I$ will contain a circuit. Let $x$ be an element in $C\cap J\setminus I$. Note that $C$ is the unique circuit in $J\cup I$, so $J\cup I-x$ should be independent. Then for the other element $z\in J\setminus I$, $I+z$ contains no circuit.
     \end{enumerate}
 \end{proof}
 Similar methods can be used to prove edges in $(k,\ell)$-sparse subgraphs form the independent set of matroid.
@@ -609,6 +609,19 @@ This looks almost the same as LP2 and Dual2, but here $f$ is a polymatroid funct
 
 However 2. for polymatroid functions (see LP3) is more complicated. In LP3 $x$ is no longer indicator vector of subsets of $S$ since $f$ is not subcardinal. Now it is reasonable to write $x_{alg}$ as (5.27) and to proof lemma 5.5.10 and theorem 5.5.11.
 
+\subsection{matroids vs polymatroids}
+Theorem 5.5.14 is important and the proof is tricky. I think it's worth a careful reading.
+\begin{proof}[exercise 5.5.13]
+    It follows from the definition of $b_r$ and the monotonicity of $r$ that $b_r(\emptyset)=0$ and $b_r$ is non-decreasing. For any $A\subseteq B\subseteq S$ and $e\in S\setminus B$, one can see that $\psi^-(e)$ has empty intersection with $\psi^-(A)$ and $\psi^-(B)$. Thus by submodularity of $r$ we know that $b_r(B+e)-b_r(B)=r(\psi^-(B)\cup \psi^-(e))-r(\psi^-(B))\leq r(\psi^-(A)\cup \psi^-(e))-r(\psi^-(A))=b_r(A+e)-b_r(A)$.
+\end{proof}
+
+\begin{proof}[exercise 5.5.14]
+    I can't find a mapping directly. However if using theorem 5.5.16 is allowed, we only need to show that $e_G$ is polymatroidal. There is a construction in the proof of theorem 5.5.16.
+\end{proof}
+
+\begin{proof}[problem 5.5.15]
+    It follows from theorem 5.5.17 that we only need to prove that the edges of $G'$ is independent set of a matroid. Suppose there are two subgraphs $G_1=(V,F)$ and $G_2=(V,H)$ both satisfying the condition that $d_{G_i}(v)\leq g(v)$ for all $v\in V$. We prove the weak independent set exchange property. Assume that $|F\setminus H|=2$ and $|H\setminus F|=1$. Suppose $F$ and $H$ violate the exchange property. Let $h=H\setminus F$. $F+h$ does not satisfy the condition since otherwise $F\cup H$ is independent. Thus there exists a 'circuit'(It is not a matroid yet) $C\subset F+h$. $C\cap (F\setminus H)$ is not empty since otherwise $F$ is not independent. Consider the induced graph of $F\cup H$. Removing any edge in $C$ will make the whole graph independent. Thus one of the two edges in $F\setminus H$ can be added to $H$ while keeping independence. Thus edges of $G'$ indeed form the independent set of a matroid. The rest of the proof is just applying theorem 5.5.17.
+\end{proof}
 \section{Chapter 13 - Matroid optimization}
 \subsection{count matroids}
 
