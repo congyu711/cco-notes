@@ -180,7 +180,11 @@ connected $\equiv$ non-separable $\equiv$ $r(X)+r(S-X)> r(S)$, $X$ is a proper n
 
 interesting fact: circuit matroid is connected if and only if the graph is 2-connected.
 
-\note{in the proof of theorem 5.2.9, why is CM connected if CB is connected? is it possible that CB is connected but CB' is not connected?}
+\mybox[green!20]{\textbf{Q.} In the proof of theorem 5.2.9, why is CM connected if CB is connected? is it possible that CB is connected but CB' is not connected? 
+
+\textbf{A.}
+This problem really confused me. And I think we did not understand the conception of fundamental circuit well. The information can be found at \url{https://proofwiki.org/wiki/Definition:Fundamental_Circuit_(Matroid)}. $B$ is a base of $M=(S,\mathcal{F})$, a fundamental circuit with respect to $B$ means: we choose a element $x \in S - B$, and we can see that $x + B$ is a dependent set. Fundamental circuit is $C \subset x + B$. We can see that $x \in C$ and if we find all fundamental circuits $C_B$ with respect to $B$, $C_B$ has all elements belong to $S - B$ and it also has some elements in $B$. So in hypergraph, $C_B$ is connected, $C_M$ is connected too.}
+
 
 \subsection{basis}
 \begin{theorem}[basis $\leftrightarrow$ independent set]
