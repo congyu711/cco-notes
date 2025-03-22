@@ -390,6 +390,13 @@ The following is something not in the book. A matroid is called sparse paving if
     For any element $e$, at least one of $M\setminus e$ or $M/e$ is connected if $M$ is connected. See \cite[lemma to theorem II]{crapo_higher_1967}.
 \end{proof}
 \subsection{matroid connectivity}
+\begin{theorem}[prop 5.7 in \href{https://iuuk.mff.cuni.cz/~pangrac/vyuka/matroids/matroid-ch5.pdf}{this notes}]
+    A matroid $M$ is connected if
+    \begin{enumerate}
+        \item $r(X)+r(E-X)>r(E)$ for all non-empty $X\subsetneq E$, or equivalently
+        \item for any two elements $x,y\in E$, there is a circuit containing both $x$ and $y$.
+    \end{enumerate}
+\end{theorem}
 \url{https://core.ac.uk/download/pdf/82501331.pdf}
 
 \emph{$k$-separation} of a matroid $M=(E,\mathcal I)$ is a bipartition $\{X,Y\}$ of $E$ such that $\min\{|X|,|Y|\}\geq k$ and $r(X)+r(Y)\leq r(M)+k-1$.
