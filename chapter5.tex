@@ -237,7 +237,7 @@ In \cite{Greene_Magnanti_1975} there are proofs of all exchange properties above
     \newline
     Suppose cocircuit $C^*$ and circuit $C$ intersect in exactly 1 element $e$. Consider the matroid minor $M'=M\backslash(C^*-x)$($M$ with $C^* -x$ deleted). Thus $x$ is a coloop in $M'$ since $C^*$ is the minimal set intersecting every base and $C^*-x$ is deleted. Note that $C$ is still a dependent set in $M'$ since nothing is deleted in $C$. We find a contradiction that circuit $C$ contains a coloop $x$.
 \end{proof}
-\subsection{Generalized partition matroid}
+\subsection{generalized partition matroid}
 
 \begin{proof}[problem 5.3.4]
     The only if part is easy. For the if part, one can see that $|F|\leq k$ and $|F\cap S_i|\leq g_i$ for every $i$. Greedily adding elements to $F$ without violating $|F\cap S_i|\leq g_i$ makes a base. Thus $F$ must be a subset of some base and $F$ is independent.
@@ -284,7 +284,7 @@ The following is something not in the book. A matroid is called sparse paving if
     Consider a dependent hyperplane $H$. By its definition we have $r(H)=r-1$ and $|H|\geq r$ where $r$ is the rank of the matroid. Note that the complement of $H$ is circuit in the dual matroid, which is also paving. Thus we have $|H|\geq n-r$. Thus the size of $H$ is exactly $r$. Since dependent sets with size $r$ are circuits, the dependent hyperplane $H$ must be a circuit.
 \end{proof}
 
-\subsection{Rank}
+\subsection{rank}
 \begin{proof}
     Suppose R1 R2 and R4 holds. We prove R3 R3' R3'' are equivalent.
     \begin{itemize}
@@ -353,7 +353,7 @@ The following is something not in the book. A matroid is called sparse paving if
 
     Consider the planar dual $G^*$ of some planar graph $G$. We prove that $T\subset E$ is a base if and only if the complement of corresponding edges of $T$ in the planar dual is a base in the dual matroid. Let $T^*$ be the corresponding edges in $G^*$ for $T\subseteq E$. Since ${M^*}^*=M$ and $\overline{\overline{T^*}^*}=T$, we only need to prove one side. Let $T$ be a base of $G$. $\overline{T^*}$ must induce a connected graph in $G^*$ since otherwise $T^*$ contains a cut(cocircuit of $M(G^*)$) and $T$ won't be a base. $\overline{T^*}$ contains no circuit in $G^*$ since otherwise $\overline{T}$ will contain a cut in $G$ and $T$ won't be a base. Thus $\overline{T^*}$ is a base in $G^*$ if $T$ is a base in $G$.
 \end{proof}
-\subsection{Minors}
+\subsection{minors}
 \begin{proof}[exercise 5.4.8, contraction]
     One can easily see that $r'$ satisfies R1 and R2. For R3, $r'(X)=r(X\cup Z)-r(Z)\leq r(X)+r(Z)-r(X\cup Z)-r(Z)\leq |X|$. For R4, $r'$ is submodular since $r$ is submodular and $(X\cup Z) \cap (Y\cup Z)=(X\cap Y)\cup Z$.
 \end{proof}
